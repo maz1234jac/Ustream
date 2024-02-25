@@ -1,0 +1,28 @@
+const BASE_URL="http://localhost:4000/api/v1"
+
+//Auth endpoints
+export const authEndpoints={
+    SIGNUP_API:BASE_URL+"/signup",
+    LOGIN_API:BASE_URL+"/login"
+}
+
+//post endpoints
+export const postEndpoints={
+    CREATE_POST_API:BASE_URL+"/createPost",
+    GET_ALL_POST_API:BASE_URL+"/getAllPost",
+    DELETE_POST_API:BASE_URL+"/deletePost",
+    EDIT_POST_API:BASE_URL+"/editPost"
+}
+
+//like and comments endpoinst
+export const likeCommentsEndpoints={
+    LIKE_API:BASE_URL+"/like",
+    DISLIKE_API:BASE_URL+"/dislike",
+    CREATE_COMMENT_API:BASE_URL+"/createComment",
+    EDIT_COMMENT_API:BASE_URL+"/editComment",
+    DELETE_COMMENT_API:BASE_URL+"/deleteComment"
+}
+
+export const getUserEndpoints={
+    GET_USER_API:BASE_URL+"/findCurrentUser",
+}
