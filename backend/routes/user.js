@@ -1,0 +1,45 @@
+const express=require("express");
+const router=express.Router();
+
+const { signUp, login } = require("../controllers/Auth");
+const {getCurrentUser} =require("../controllers/User");
+const {editAdditionalDetails}=require("../controllers/Profile");
+const {createPost,editPost,deletPost,getAllPost}=require("../controllers/Post");
+const {like,dislike}=require("../controllers/Like");
+const {createComment,deleteComment,editComment}=require("../controllers/Comment");
+const {createTag}=require("../controllers/Tag");
+const {followUser}=require("../controllers/Followers");
+
+//importing middleware
+const {auth}=require("../middleware/auth");
+
+router.post("/signup",signUp);
+router.post("/login",login);
+
+router.post("/findCurrentUser",auth,getCurrentUser);
+
+router.post("/editProfile",auth,editAdditionalDetails);
+
+//create post routes
+router.post("/createPost",auth,createPost);
+router.post("/editPost",auth,editPost);
+router.post("/deletePost",auth,deletPost);
+router.get("/getAllPost",getAllPost);
+
+//like and unlike the post
+router.post("/like",auth,like);
+router.post("/dislike",auth,dislike);
+
+//comments routes
+router.post("/createComment",auth,createComment);
+router.post("/deleteComment",auth,deleteComment);
+router.post("/editComment",auth,editComment);
+
+//tag routes
+router.post("/createTag",auth,createTag);
+
+//follow routes
+router.post("/follow",auth,followUser);
+
+
+module.exports=router;
