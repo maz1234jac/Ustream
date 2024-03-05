@@ -6,7 +6,7 @@ const {getCurrentUser} =require("../controllers/User");
 const {editAdditionalDetails}=require("../controllers/Profile");
 const {createPost,editPost,deletPost,getAllPost}=require("../controllers/Post");
 const {like,dislike}=require("../controllers/Like");
-const {createComment,deleteComment,editComment}=require("../controllers/Comment");
+const {createComment,deleteComment,editComment,viewComment}=require("../controllers/Comment");
 const {createTag}=require("../controllers/Tag");
 const {followUser}=require("../controllers/Followers");
 
@@ -34,6 +34,7 @@ router.post("/dislike",auth,dislike);
 router.post("/createComment",auth,createComment);
 router.post("/deleteComment",auth,deleteComment);
 router.post("/editComment",auth,editComment);
+router.post("/veiwComments",viewComment);
 
 //tag routes
 router.post("/createTag",auth,createTag);

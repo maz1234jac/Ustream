@@ -12,7 +12,8 @@ const {
 const {
     LIKE_API,
     DISLIKE_API,
-    CREATE_COMMENT_API
+    CREATE_COMMENT_API,
+    VIEW_COMMENT_API
 }=likeCommentsEndpoints;
 
 const {
@@ -81,6 +82,21 @@ export function createComment(commentData){
         }
     }
     doComment();
+}
+
+export const viewComment=async(postId)=>{
+    try{
+        const response=await apiConnector("post",VIEW_COMMENT_API,{postId:postId});
+        if(!response){
+            throw new Error("Didn't fetch the comments");
+        }
+
+        return response;
+    }
+    catch(error){
+        console.log("Error occured while accessing the comments");
+        console.log(error);
+    }
 }
 
 export function doLike(like,dispatch,setRefresh){

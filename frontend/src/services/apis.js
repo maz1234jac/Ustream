@@ -20,7 +20,8 @@ export const likeCommentsEndpoints={
     DISLIKE_API:BASE_URL+"/dislike",
     CREATE_COMMENT_API:BASE_URL+"/createComment",
     EDIT_COMMENT_API:BASE_URL+"/editComment",
-    DELETE_COMMENT_API:BASE_URL+"/deleteComment"
+    DELETE_COMMENT_API:BASE_URL+"/deleteComment",
+    VIEW_COMMENT_API:BASE_URL+"/veiwComments",
 }
 
 export const getUserEndpoints={

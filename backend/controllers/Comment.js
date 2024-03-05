@@ -182,6 +182,46 @@ exports.deleteComment=async(req,res)=>{
     }
 }
 
+//view comment
+exports.viewComment=async(req,res)=>{
+    try{
+        //1. get postId 
+        const {postId}=req.body;
+
+        //2. validate
+        if(!postId){
+            return res.status(400).json({
+                success:false,
+                message:"Please enter the postId carefully"
+            })
+        }
+
+        //3. find comments by the help of postId from Comment model
+        const comments=await Comment.find({post:postId}).populate("user").exec();
+
+        if(!comments){
+            return res.status(400).json({
+                success:false,
+                message:"No Such postId exist in the comment model",
+            })
+        }
+
+        //4. return the success response
+        return res.status(200).json({
+            message:true,
+            message:"Comments fetched successfully",
+            data:comments
+        })
+
+    }catch(error){
+        console.log("Error occured while getting the comments");
+        return res.status(500).json({
+            success:false,
+            message:"Error occured in fetching the comments",
+            data:error
+        })
+    }
+}
 
 //edit comment
 exports.editComment=async(req,res)=>{

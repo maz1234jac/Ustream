@@ -7,12 +7,14 @@ import {useDispatch, useSelector} from "react-redux"
 import { setRefresh } from '../../slices/refreshSlice'
 import FollowCard from '../Common/FollowCard'
 import { setUserInfo } from '../../slices/profileSlice'
+import Comment from './Comment'
 
 const Post = () => {
   const [posts, setPosts] = useState([]);
   const refresh=useSelector((state)=>state.refresh.postRefresh);
   const dispatch=useDispatch();
   const [userId,setUserId]=useState({});
+  const [commData,setCommData]=useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,13 +38,19 @@ const Post = () => {
     //console.log(userId)
   },[userId])
 
+  if(Object.keys(commData).length !== 0){
+    return <div >
+      <Comment post={commData} setCommData={setCommData} commData={commData} />
+    </div>
+  }
+
   return (
     <>
         <div className='mt-2 max-w-[500px] mx-auto  px-2'>
           <TopNav/>
           {
             posts.map((post,ind)=>{
-              return <PostCard  post={post} key={ind}/>
+              return <PostCard  post={post} key={ind} setCommData={setCommData}/>
             })
           }
           <BottomNav/>

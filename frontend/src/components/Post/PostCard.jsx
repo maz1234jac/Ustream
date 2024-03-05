@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setRefresh } from '../../slices/refreshSlice';
 import { FcLike } from "react-icons/fc";
 
-const PostCard = ({post}) => {
+const PostCard = ({post, setCommData}) => {
     const [commentData,setCommentData]=useState({
         comment:"",
         postId:"",
@@ -18,11 +18,9 @@ const PostCard = ({post}) => {
         post:"",
     })
 
-    const [viewComm,setViewComm]=useState(false);
-
     const dispatch=useDispatch();
     const userId=useSelector((state)=>state.user.user);
-    console.log(userId)
+    //console.log(userId)
 
     //console.log(post);
     const date= new Date(post.createdAt);
@@ -30,7 +28,7 @@ const PostCard = ({post}) => {
 
     //like controller
     const likeHandler=async(post)=>{
-        console.log("Check ",post.title)
+        //console.log("Check ",post.title)
         setLike({
             post:post,
         });
@@ -55,10 +53,6 @@ const PostCard = ({post}) => {
             ...commentData,
             [name]:value,
         })
-    }
-
-    if(viewComm){
-        return <h1>Comment</h1>
     }
 
   return (
@@ -99,8 +93,8 @@ const PostCard = ({post}) => {
                     }
                     <p className='text-sm font-semibold'>{`${post.likes.length} likes`}</p>
                 </div>
-                <div 
-                onClick={()=>set}
+                <div
+                onClick={()=>setCommData(post)}
                 className='flex gap-1 items-center cursor-pointer'>
                     <FaRegComment/><p className='text-sm font-semibold'>{`${post.comments.length} comments`}</p>
                 </div>
