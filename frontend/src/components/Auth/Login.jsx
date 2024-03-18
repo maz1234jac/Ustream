@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import text_logo from "../assests/text_logo.png"
 import login_screenshots from "../assests/login_screeenshot.png"
 import { Link, useNavigate } from 'react-router-dom'
-import { apiConnector } from '../../services/apiconnector'
-import { authEndpoints } from '../../services/apis'
 import { logIn } from '../../services/operations/authAPI'
 
 const Login = () => {

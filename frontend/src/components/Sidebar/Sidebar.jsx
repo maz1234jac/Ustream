@@ -9,11 +9,14 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { BsSend } from "react-icons/bs";
 import { GoPlusCircle } from "react-icons/go";
 import { FaRegUserCircle } from "react-icons/fa";
-import { FaThreads } from "react-icons/fa6";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { logout } from '../../services/operations/authAPI';
+import { useDispatch} from 'react-redux';
+import { setCreatePost } from '../../slices/createPostSllce';
 
-const Sidebar = ({setCreatePost}) => {
+const Sidebar = () => {
+    const dispatch=useDispatch();
+
     const menus=[
         {
             title:"Home",
@@ -61,11 +64,11 @@ const Sidebar = ({setCreatePost}) => {
     const createPostBtnHandle = (elem) => {
         if (elem.title === "Create") {
             setSelect(elem.title)
-            setCreatePost(true);
+            dispatch(setCreatePost(true));
         } else {
-            setCreatePost(false);
             setSelect(elem.title);
             navigate(elem.route);
+            dispatch(setCreatePost(false))
         }
     }
     

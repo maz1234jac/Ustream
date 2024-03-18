@@ -3,8 +3,12 @@ import dp from '../assests/dp.jpg';
 import { GiCancel } from "react-icons/gi";
 import { createPost } from '../../services/operations/postAPI';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCreatePost } from '../../slices/createPostSllce';
 
-const CreatePost = ({ setCreatePost }) => {
+const CreatePost = () => {
+    const dispatch=useDispatch();
+
     const [postData, setPostData] = useState({
         title: "",
         image: null,
@@ -37,18 +41,22 @@ const CreatePost = ({ setCreatePost }) => {
 
             // Calling createPost function with form data
             createPost(formData, navigate);
-            setCreatePost(false);
+            dispatch((setCreatePost(false)));
         } catch (error) {
             console.error("Error creating post:", error);
            
         }
     };
 
+    const cancelCreatePost=()=>{
+        dispatch(setCreatePost(false));
+    }
+
     return (
         <div className='w-[100vw] h-[100vh]  flex  justify-center items-center'>
             <div className='w-[60vw] h-[75vh] bg-white rounded-2xl relative'>
                 <h1 className='py-2 font-semibold text-center'>Create a new Post</h1>
-                <div onClick={() => setCreatePost(false)} className='absolute text-3xl text-red-700 top-2 right-2 cursor-pointer hover:rotate-45 duration-200'>
+                <div onClick={cancelCreatePost} className='absolute text-3xl text-red-700 top-2 right-2 cursor-pointer hover:rotate-45 duration-200'>
                     <GiCancel />
                 </div>
                 <div className='h-[1px] w-full bg-black'></div>

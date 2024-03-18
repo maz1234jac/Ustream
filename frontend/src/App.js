@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import CreatePost from "./components/CreatePost/CreatePost";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/Auth/PrivateRoute";
+import CommingSoon from "./components/ExceptionHandle/CommingSoon";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
               <Route path="user" element={<Profile />} />
           </Route>
             
-         
+         <Route path="*" element={<CommingSoon/>}/>
           
           
         </Routes>

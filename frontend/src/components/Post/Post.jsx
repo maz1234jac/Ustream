@@ -4,7 +4,6 @@ import TopNav from '../Navbar/TopNav'
 import BottomNav from '../Navbar/BottomNav'
 import { getAllPost, getUser } from '../../services/operations/postAPI'
 import {useDispatch, useSelector} from "react-redux"
-import { setRefresh } from '../../slices/refreshSlice'
 import FollowCard from '../Common/FollowCard'
 import { setUserInfo } from '../../slices/profileSlice'
 import Comment from './Comment'
