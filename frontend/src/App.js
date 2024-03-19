@@ -8,6 +8,7 @@ import CreatePost from "./components/CreatePost/CreatePost";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import CommingSoon from "./components/ExceptionHandle/CommingSoon";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             }>
               <Route path="/" element={<Post/>}/>  
               <Route path="user" element={<Profile />} />
+              <Route path="/user/editProfile" element={<EditProfile/>}/>
           </Route>
             
          <Route path="*" element={<CommingSoon/>}/>

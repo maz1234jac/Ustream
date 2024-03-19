@@ -6,6 +6,7 @@ import { FaRegBookmark } from "react-icons/fa6";
 import { FaTag } from "react-icons/fa6";
 import { getUser } from '../services/operations/postAPI';
 import UserStates from '../components/Common/UserStates';
+import { NavLink } from 'react-router-dom';
 
 const Profile = () => {
     const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -60,7 +61,9 @@ const Profile = () => {
                         <div className='flex flex-wrap gap-8 items-center text-lg'>
                             <h1>{user.userName}</h1>
                             <div className='flex gap-8 items-center'>
-                                <button className='bg-gray-200 p-1 px-5 rounded-md text-sm font-semibold'> Edit Profile</button>
+                                <NavLink 
+                                to={"/user/editProfile"}
+                                className='bg-gray-200 p-1 px-5 rounded-md text-sm font-semibold'> Edit Profile</NavLink>
                                 <button className='text-2xl bg-gray-200 p-1 rounded-full'>
                                     <CiSettings/>
                                 </button>

@@ -24,6 +24,11 @@ export const likeCommentsEndpoints={
     VIEW_COMMENT_API:BASE_URL+"/veiwComments",
 }
 
+//user additional deatils end poinst
+export const updateAddDeatailsEndpoints={
+    CREATE_ADDITIONAL_DETAILS:BASE_URL+"/editProfile"
+}
+
 export const getUserEndpoints={
     GET_USER_API:BASE_URL+"/findCurrentUser",
 }

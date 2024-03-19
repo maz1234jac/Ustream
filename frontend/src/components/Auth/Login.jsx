@@ -14,6 +14,7 @@ const Login = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         logIn(loginData,navigate);
+        window.location.reload();//for realoding the page after loggin first time.
     }
 
     const handleChange=(e)=>{
