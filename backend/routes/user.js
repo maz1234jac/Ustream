@@ -9,6 +9,7 @@ const {like,dislike}=require("../controllers/Like");
 const {createComment,deleteComment,editComment,viewComment}=require("../controllers/Comment");
 const {createTag}=require("../controllers/Tag");
 const {followUser}=require("../controllers/Followers");
+const {savePost}=require("../controllers/SavePost")
 
 //importing middleware
 const {auth}=require("../middleware/auth");
@@ -25,6 +26,7 @@ router.post("/createPost",auth,createPost);
 router.post("/editPost",auth,editPost);
 router.post("/deletePost",auth,deletPost);
 router.get("/getAllPost",getAllPost);
+router.post("/savePost",auth,savePost);
 
 //like and unlike the post
 router.post("/like",auth,like);
