@@ -19,6 +19,7 @@ export function updateAdditionalDetails(profileData,navigate){
                 throw new Error("Error occured in user details",response);
             }
             toast.success("User details updated succesfullly");
+            console.log(response)
             navigate("/user")
         }catch(error){
             console.log("Error occured while updating the user additional detials");

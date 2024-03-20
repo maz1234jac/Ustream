@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const BottomNav = () => {
   const navigate=useNavigate();
   return (
-    <div className='text-3xl flex justify-between items-center mt-2 pt-2 pb-3 -mx-1 px-2 sticky bottom-0 bg-white'>
+    <div className='text-3xl flex sm:hidden justify-between items-center mt-2 pt-2 pb-3 -mx-1 px-2 sticky bottom-0 bg-white'>
         <GoHome onClick={()=>navigate("/")}/>
         <CiSearch onClick={()=>navigate("/")}/>
         <SiYoutubeshorts onClick={()=>navigate("/reels")}/>

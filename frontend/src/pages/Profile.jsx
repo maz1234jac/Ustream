@@ -7,6 +7,7 @@ import { FaTag } from "react-icons/fa6";
 import { getUser } from '../services/operations/postAPI';
 import UserStates from '../components/Common/UserStates';
 import { NavLink } from 'react-router-dom';
+import BottomNav from '../components/Navbar/BottomNav';
 
 const Profile = () => {
     const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;

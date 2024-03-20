@@ -9,7 +9,8 @@ const EditProfile = () => {
     const [profile, setProfile] = useState({
         gender: "male",
         dateOfBirth: "",
-        about: ""
+        about: "",
+        dp:null
     });
     const [user,setUser]=useState({});
 
@@ -28,37 +29,48 @@ const EditProfile = () => {
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setProfile((prevProfile) => ({
-            ...prevProfile,
-            [name]: value,
-        }));
+        const { name, value,files } = e.target;
+        if(files && files[0]){
+            setProfile({
+                ...profile,
+                [name]:files[0]
+            });
+        }else{
+            setProfile({
+                ...profile,
+                [name]:value,
+            });
+        }
     };
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        if(!profile.gender || !profile.about || !profile.gender){
+        if(!profile.gender || !profile.about){
             alert("Please enter all details carefully");
             return;
         }
+        if(!profile.gender)
+            setProfile({
+               dateOfBirth:user.additionDetails.dateOfBirth
+            })
 
         try{
             const formData=new FormData();
             formData.append('gender',profile.gender);
             formData.append('dateOfBirth',profile.dateOfBirth);
             formData.append('about',profile.about);
+            formData.append('dp',profile.dp);
 
             updateAdditionalDetails(formData,navigate);
         }catch(error){
             console.log("Error occured while updating the user detalis");
-        }   
+        }  
     }
 
     return (
         <div className='flex flex-col sm:w-[70%] w-full items-start justify-center m-5 my-8 border-2 px-5 py-10'>
             <h1 className='text-xl font-bold'>Edit Profile</h1>
-            <div className='bg-gray-200 rounded-2xl flex items-center justify-between w-[90%]  p-5 mt-5'>
+            <div className='bg-gray-200/80 rounded-2xl flex flex-col sm:flex-row gap-2 sm:items-center justify-between sm:w-[90%] w-full overflow-hidden  p-5 mt-5'>
                 <div className='flex items-center gap-4 '>
                     <img src={user.image} alt="" className='w-[50px] h-[50px] rounded-full' />
                     <div>
@@ -67,7 +79,7 @@ const EditProfile = () => {
                     </div>
                 </div>
                 <div>
-                    <input type="file" name='profile' onChange={handleChange} />
+                    <input type="file" name='dp' id='fileToUpload' onChange={handleChange} />
                 </div>
             </div>
 
