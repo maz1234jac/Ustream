@@ -24,6 +24,11 @@ export const likeCommentsEndpoints={
     VIEW_COMMENT_API:BASE_URL+"/veiwComments",
 }
 
+//save post
+export const savePostEndpoints={
+    SAVE_POST_API:BASE_URL+"/savePost",
+}
+
 //user additional deatils end poinst
 export const updateAddDeatailsEndpoints={
     CREATE_ADDITIONAL_DETAILS:BASE_URL+"/editProfile"

@@ -69,7 +69,7 @@ exports.savePost=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"Post has been unsaved",
+                message:"Post Unsaved",
                 data:unsavedPost
             })
         }else{
@@ -105,7 +105,7 @@ exports.savePost=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"Post has been saved",
+                message:"Post Saved",
                 data:updateUser
             })
         }

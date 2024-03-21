@@ -7,7 +7,8 @@ import { FaTag } from "react-icons/fa6";
 import { getUser } from '../services/operations/postAPI';
 import UserStates from '../components/Common/UserStates';
 import { NavLink } from 'react-router-dom';
-import BottomNav from '../components/Navbar/BottomNav';
+import { FcLike } from "react-icons/fc";
+import { FaRegComment } from "react-icons/fa";
 
 const Profile = () => {
     const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -43,9 +44,13 @@ const Profile = () => {
     }, [token,choice]);
 
     useEffect(() => {
-        setUserPosts(user[choice] || []);
-        //console.log(user)
-        //console.log(userPosts)
+        if(choice==="saved")
+            setUserPosts(user.savedPosts);
+        else{
+            setUserPosts(user[choice] || []);
+            console.log(user)
+            console.log(userPosts)
+        }
     }, [user,choice]);
 
     return (
@@ -106,8 +111,23 @@ const Profile = () => {
                 {userPosts.length !== 0 ? (
                     <div className='mt-6 w-full grid grid-cols-3 md:grid-cols-4 gap-1  px-5'>
                         {userPosts.map((post, ind) => (
-                            <div key={ind} className='cursor-pointer hover:opacity-50 bg-gray-200  max-h-[300px] border-2 flex justify-center'>
-                                <img src={post.postImage} alt="" className='  bg-cover h-[100%] ' />
+                            <div key={ind} className='group cursor-pointer  bg-gray-200  max-h-[300px] border-2 flex justify-center relative'>
+                                <img src={choice==="saved" ? post.post?.postImage :post.postImage} alt="" className=' bg-cover h-[100%]  ' />
+                                <div className='hidden group-hover:flex  gap-4 group-hover:absolute justify-center  w-full h-full bg-gray-200 bg-opacity-70'>
+                                    <p className='flex gap-1 items-center'>
+                                        <h1 className='text-2xl font-bold'><FcLike/></h1>
+                                        <div>
+                                            {choice==="saved" ? post.post?.likes.length : post.likes?.length}
+                                        </div>
+                                    </p>
+                                    <p className='flex gap-1 items-center'>
+                                        <h1 className='text-2xl font-bold'><FaRegComment/></h1>
+                                        <div>
+                                            {choice==="saved" ? post.post?.comments.length : post.comments?.length}
+                                        </div>
+                                    </p>
+                                </div>
+                                
                             </div>
                         ))}
                     </div>

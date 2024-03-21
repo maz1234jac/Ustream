@@ -3,8 +3,9 @@ import dp from "../assests/dp.jpg"
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
-import { FaBookmark } from "react-icons/fa";
-import { createComment, doLike } from '../../services/operations/postAPI';
+import { PiBookmarkSimpleFill } from "react-icons/pi";
+import { PiBookmarkSimpleLight } from "react-icons/pi";
+import { createComment, doLike, savePost } from '../../services/operations/postAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRefresh } from '../../slices/refreshSlice';
 import { FcLike } from "react-icons/fc";
@@ -37,7 +38,6 @@ const PostCard = ({post, setCommData}) => {
     useEffect(()=>{
         if(like.post!==""){
             doLike(like.post,dispatch,setRefresh);
-            dispatch(setRefresh());
         }
     },[like])
    
@@ -53,6 +53,12 @@ const PostCard = ({post, setCommData}) => {
             ...commentData,
             [name]:value,
         })
+    }
+
+    //save post controller
+    const savePostHandler=(post)=>{
+        savePost(post,dispatch,setRefresh);
+        console.log("Post saved successfully");
     }
 
   return (
@@ -99,8 +105,15 @@ const PostCard = ({post, setCommData}) => {
                     <FaRegComment/><p className='text-sm font-semibold'>{`${post.comments.length} comments`}</p>
                 </div>
             </div>
-            <div>
-                <FaBookmark/>
+            <div
+            className='cursor-pointer font-bold'
+            onClick={()=>savePostHandler(post._id)}
+            >
+                {
+                    userId.savedPosts?.some(savedPost => savedPost.user === userId._id && savedPost.post._id === post._id)
+                        ? <PiBookmarkSimpleFill/> : <PiBookmarkSimpleLight/>
+                }
+                
             </div>
         </div>
         <div className='text-sm  mt-1'>

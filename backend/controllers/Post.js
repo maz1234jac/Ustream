@@ -62,7 +62,7 @@ exports.createPost=async(req,res)=>{
             createdBy:token.id,
             postImage:respone.secure_url,
         })
-        post.save();
+        post.populate("savedPosts").save();
 
         //4. Check whether entry is created or not
         if(!post){

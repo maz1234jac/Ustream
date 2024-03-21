@@ -13,7 +13,12 @@ exports.getCurrentUser=async(req,res)=>{
             })
         }
         //3. find the token in User DB
-        const findUser=await User.findById(token.id).populate("additionDetails").populate("posts").exec();
+        const findUser=await User.findById(token.id).populate({
+            path:"savedPosts",
+            populate:{
+                path:"post"
+            }
+        }).populate("additionDetails").populate("posts").exec();
 
         if(!findUser){
             return res.status(404).json({

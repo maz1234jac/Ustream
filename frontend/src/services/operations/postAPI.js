@@ -1,5 +1,5 @@
 import { apiConnector } from "../apiconnector";
-import { getUserEndpoints, likeCommentsEndpoints, postEndpoints } from "../apis";
+import { getUserEndpoints, likeCommentsEndpoints, postEndpoints, savePostEndpoints } from "../apis";
 import {toast} from "react-hot-toast"
 
 const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -15,6 +15,10 @@ const {
     CREATE_COMMENT_API,
     VIEW_COMMENT_API
 }=likeCommentsEndpoints;
+
+const {
+    SAVE_POST_API
+}=savePostEndpoints;
 
 const {
     GET_USER_API
@@ -111,7 +115,7 @@ export function doLike(like,dispatch,setRefresh){
                 throw new Error("Error occured while liking")
             }
             dispatch(setRefresh());
-            toast.success("Liked successfully"); 
+            toast.success("Liked"); 
         }
         catch(error){
             if(error.response && error.response.status === 409){
@@ -134,7 +138,7 @@ export function doLike(like,dispatch,setRefresh){
                 throw new Error("Error occured while disliking frontend= ",response);
             }
             dispatch(setRefresh());
-            toast.success("Like removed successfully",{
+            toast.success("Like removed",{
                 style:{
                     color:"red"
                 }
@@ -147,6 +151,25 @@ export function doLike(like,dispatch,setRefresh){
         }
     }
     doLike();
+}
+
+//save post-> booksmarks
+export const savePost=async(post,dispatch,setRefresh)=>{
+    try{
+        const response=await apiConnector("post",SAVE_POST_API,{postId:post},
+        {
+            Authorization:`Bearer ${token}`
+        })
+
+        if(!response){
+            throw new Error(response.data.message);
+        }
+        
+        dispatch(setRefresh());
+        toast.success(response.data.message);
+    }catch(error){
+        console.log("Error occured in Saving the post => ",error);
+    }
 }
 
 //FOR LATER USER -> NOT UTILISING CURRENTLY
