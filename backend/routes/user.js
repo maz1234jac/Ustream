@@ -8,8 +8,8 @@ const {createPost,editPost,deletPost,getAllPost}=require("../controllers/Post");
 const {like,dislike}=require("../controllers/Like");
 const {createComment,deleteComment,editComment,viewComment}=require("../controllers/Comment");
 const {createTag}=require("../controllers/Tag");
-const {followUser}=require("../controllers/Followers");
 const {savePost}=require("../controllers/SavePost")
+const {follow}=require("../controllers/Follow1");
 
 //importing middleware
 const {auth}=require("../middleware/auth");
@@ -42,7 +42,6 @@ router.post("/veiwComments",viewComment);
 router.post("/createTag",auth,createTag);
 
 //follow routes
-router.post("/follow",auth,followUser);
-
+router.post("/follow",auth,follow);
 
 module.exports=router;

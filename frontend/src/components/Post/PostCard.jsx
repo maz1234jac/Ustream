@@ -42,10 +42,11 @@ const PostCard = ({post, setCommData}) => {
     },[like])
    
     // comment controller
-    const commentSubmitHandler=(post)=>{
+    const commentSubmitHandler=(e,post)=>{
+        e.preventDefault();
         commentData.postId=post;
 
-        createComment(commentData)
+        createComment(commentData,dispatch,setRefresh)
     }
     const handleChange=(e)=>{
         const {name,value}=e.target;
@@ -119,7 +120,7 @@ const PostCard = ({post, setCommData}) => {
         <div className='text-sm  mt-1'>
             <p className='text-black font-bold pl-1 '>{post.title}</p>
             <form 
-            onSubmit={()=>commentSubmitHandler(post)} className='flex justify-between'>
+            onSubmit={(e)=>commentSubmitHandler(e,post)} className='flex justify-between'>
                 <input 
                 onChange={handleChange}
                 name='comment'

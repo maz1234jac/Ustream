@@ -37,24 +37,21 @@ const userSchema=new mongoose.Schema({
             ref:"SavePost",
         }
     ],
-    followers:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User",
-        },
-    ],
-    following:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User",
-        }
-    ],
     follow:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"Follow"
         }
     ],
+    followersCount:{
+         type: Number, 
+         default: 0 
+    },
+    followingCount:{ 
+        type: Number,
+         default: 0 
+    },
+
     additionDetails:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Profile",

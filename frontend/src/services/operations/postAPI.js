@@ -65,7 +65,7 @@ export function createPost(postData,navigate){
     create();
 }
 
-export function createComment(commentData){
+export function createComment(commentData,dispatch,setRefresh){
     const doComment=async()=>{
         try{
             const response=await apiConnector("post",CREATE_COMMENT_API,commentData,
@@ -76,7 +76,7 @@ export function createComment(commentData){
             if(!response){
                 throw new Error("Error occured in comment frontend");
             }
-
+            dispatch(setRefresh());
             toast.success("Comment created");
             
         }
