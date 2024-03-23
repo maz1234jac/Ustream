@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import dp from "../assests/dp.jpg"
+import { followUser } from '../../services/operations/userAPI'
 
-const FollowCard = () => {
+const FollowCard = ({user}) => {
+  const [follow,setFollow]=useState("Follow");
+  const followHandler=async({heroId})=>{
+    console.log(heroId)
+    await followUser(heroId,setFollow);
+  }
   return (
     <div className='w-[280px] flex justify-between items-center gap-2'>
         <div className='flex gap-2 items-center'>
-            <img src={dp} alt="" className='w-[45px] h-[45px] rounded-full'/>
+            <img src={user?.image} alt="" className='w-[45px] h-[45px] rounded-full'/>
             <div>
-                <h1 className='font-semibold text-sm'>Pankaj Kuamr</h1>
-                <h2 className='text-sm'>User Name</h2>
+                <h1 className='font-semibold text-sm'>{user?.fullName}</h1>
+                <h2 className='text-sm'>{user?.userName}</h2>
             </div>
         </div>
         
-        <button className='text-blue-500 text-sm font-semibold'>Follow</button>
+        <button 
+        onClick={()=>followHandler({heroId:user?._id})}
+        className='text-blue-500 text-sm font-semibold'>{follow}</button>
     </div>
   )
 }

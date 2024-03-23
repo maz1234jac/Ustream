@@ -1,10 +1,15 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
-import { updateAddDeatailsEndpoints } from "../apis";
+import { followUserEndpoints, updateAddDeatailsEndpoints } from "../apis";
 
 const {
     CREATE_ADDITIONAL_DETAILS,
 }=updateAddDeatailsEndpoints;
+
+const {
+    FOLLOW_USER_API,
+    GET_USER_NOT_FOLLOWED,
+}=followUserEndpoints
 
 const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
 
@@ -27,4 +32,40 @@ export function updateAdditionalDetails(profileData,navigate){
         }
     }
     create();
+}
+
+export const userNotFollowed=async()=>{
+    try{
+        const response=await apiConnector("post",GET_USER_NOT_FOLLOWED,"",
+        {
+            Authorization:`Bearer ${token}`
+        })
+
+        if(!response){
+            throw new Error("Didn't fetch the user");
+        }
+
+        return response;
+    }catch(error){
+        console.log("Error in not followed user");
+        console.log(error);
+    }
+}
+
+export const followUser=async(heroId,setFollow)=>{
+    try{
+        const response=await apiConnector("post",FOLLOW_USER_API,{heroId:heroId},
+        {
+            Authorization:`Bearer ${token}`
+        })
+
+        if(!response){
+            throw new Error("Follow User Error");
+        }
+        toast.success(response.data.message);
+        setFollow(response.data.message)
+        //console.log(response.data.message)
+    }catch(error){
+        console.log("Follow Error");
+    }
 }

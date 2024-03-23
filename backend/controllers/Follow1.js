@@ -4,6 +4,7 @@ exports.follow=async(req,res)=>{
     try{
         //1.get the user id
         const {heroId}=req.body;
+        console.log(heroId)
 
         if(!heroId){
             return res.status(204).json({
@@ -79,7 +80,7 @@ exports.follow=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"User Unfollowed",
+                message:"Following",
                 data:removeFollow
             })
         }else{
@@ -121,7 +122,7 @@ exports.follow=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"user followed",
+                message:"Follow",
                 data:updateUser
             })
         }
@@ -134,3 +135,45 @@ exports.follow=async(req,res)=>{
         })
     }
 }
+
+exports.findUsersNotFollowed = async (req, res) => {
+    try {
+        const token = req.user;
+
+        // Find the current user to get their followers
+        const currentUser = await User.findById(token.id);
+
+        if (!currentUser) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        // Get the IDs of users already followed by the current user
+        const followedUserIds = currentUser.following.map(follower => follower._id);
+        console.log(followedUserIds)
+
+        // Find users who are not followed by the current user
+        const usersNotFollowed = await User.find({
+            $and: [
+                { _id: { $nin: followedUserIds } }, // Not in the followedUserIds array
+                { _id: { $ne: token.id } }, // Exclude the current user from the results
+            ]
+        });
+
+        console.log(usersNotFollowed)
+        return res.status(200).json({
+            success: true,
+            message: "Users not followed by the current user",
+            data: usersNotFollowed,
+        });
+    } catch (error) {
+        console.error("Error occurred while finding users not followed:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};

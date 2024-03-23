@@ -29,6 +29,12 @@ export const savePostEndpoints={
     SAVE_POST_API:BASE_URL+"/savePost",
 }
 
+//follow user
+export const followUserEndpoints={
+    FOLLOW_USER_API:BASE_URL+"/follow",
+    GET_USER_NOT_FOLLOWED:BASE_URL+"/userNotFollowed",
+}
+
 //user additional deatils end poinst
 export const updateAddDeatailsEndpoints={
     CREATE_ADDITIONAL_DETAILS:BASE_URL+"/editProfile"

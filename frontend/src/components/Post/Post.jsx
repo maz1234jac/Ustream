@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux"
 import FollowCard from '../Common/FollowCard'
 import { setUserInfo } from '../../slices/profileSlice'
 import Comment from './Comment'
+import { userNotFollowed } from '../../services/operations/userAPI'
 
 const Post = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +15,8 @@ const Post = () => {
   const dispatch=useDispatch();
   const [userId,setUserId]=useState({});
   const [commData,setCommData]=useState({});
+
+  const [userNotFollow,setUserNotFollow]=useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +30,15 @@ const Post = () => {
         dispatch(setUserInfo(userData.data.data));
       } catch (error) {
         console.log("Error occurred while fetching the posts:", error);
+      }
+
+      //get user data who are not followed
+      try{
+        const response=await userNotFollowed();
+        console.log(response.data.data);
+        setUserNotFollow(response.data.data)
+      }catch(error){
+        console.log("Error in fetching the user who are not followed");
       }
     };
     
@@ -61,10 +73,15 @@ const Post = () => {
 
           <h1 className='mt-5 font-semibold'>Suggested </h1>
           <div className='mt-5 flex flex-col gap-2'>
-            <FollowCard/>
-            <FollowCard/>
-            <FollowCard/>
-            <FollowCard/>
+            {
+              userNotFollow && userNotFollow.map((user,ind)=>{
+                return (
+                  <div key={ind}>
+                    <FollowCard user={user}/>
+                  </div>
+                )
+              })
+            }
           </div>
           
         </div>

@@ -114,18 +114,18 @@ const Profile = () => {
                             <div key={ind} className='group cursor-pointer  bg-gray-200  max-h-[300px] border-2 flex justify-center relative'>
                                 <img src={choice==="saved" ? post.post?.postImage :post.postImage} alt="" className=' bg-cover h-[100%]  ' />
                                 <div className='hidden group-hover:flex  gap-4 group-hover:absolute justify-center  w-full h-full bg-gray-200 bg-opacity-70'>
-                                    <p className='flex gap-1 items-center'>
+                                    <div className='flex gap-1 items-center'>
                                         <h1 className='text-2xl font-bold'><FcLike/></h1>
                                         <div>
                                             {choice==="saved" ? post.post?.likes.length : post.likes?.length}
                                         </div>
-                                    </p>
-                                    <p className='flex gap-1 items-center'>
+                                    </div>
+                                    <div className='flex gap-1 items-center'>
                                         <h1 className='text-2xl font-bold'><FaRegComment/></h1>
                                         <div>
                                             {choice==="saved" ? post.post?.comments.length : post.comments?.length}
                                         </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 
                             </div>
