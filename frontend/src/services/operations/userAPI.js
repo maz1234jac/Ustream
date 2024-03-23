@@ -52,7 +52,7 @@ export const userNotFollowed=async()=>{
     }
 }
 
-export const followUser=async(heroId,setFollow)=>{
+export const followUser=async(heroId)=>{
     try{
         const response=await apiConnector("post",FOLLOW_USER_API,{heroId:heroId},
         {
@@ -63,7 +63,6 @@ export const followUser=async(heroId,setFollow)=>{
             throw new Error("Follow User Error");
         }
         toast.success(response.data.message);
-        setFollow(response.data.message)
         //console.log(response.data.message)
     }catch(error){
         console.log("Follow Error");

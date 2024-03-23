@@ -35,7 +35,7 @@ const Post = () => {
       //get user data who are not followed
       try{
         const response=await userNotFollowed();
-        console.log(response.data.data);
+        //console.log(response.data.data);
         setUserNotFollow(response.data.data)
       }catch(error){
         console.log("Error in fetching the user who are not followed");

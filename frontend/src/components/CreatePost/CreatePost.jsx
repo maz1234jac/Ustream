@@ -37,7 +37,6 @@ const CreatePost = () => {
             const formData = new FormData();
             formData.append('title', postData.title);
             formData.append('image', postData.image);
-            console.log(formData)
 
             // Calling createPost function with form data
             createPost(formData, navigate);

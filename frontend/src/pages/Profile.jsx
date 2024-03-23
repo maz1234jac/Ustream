@@ -48,8 +48,8 @@ const Profile = () => {
             setUserPosts(user.savedPosts);
         else{
             setUserPosts(user[choice] || []);
-            console.log(user)
-            console.log(userPosts)
+            //console.log(user)
+            //console.log(userPosts)
         }
     }, [user,choice]);
 

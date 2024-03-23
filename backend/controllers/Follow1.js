@@ -4,7 +4,6 @@ exports.follow=async(req,res)=>{
     try{
         //1.get the user id
         const {heroId}=req.body;
-        console.log(heroId)
 
         if(!heroId){
             return res.status(204).json({
@@ -152,7 +151,6 @@ exports.findUsersNotFollowed = async (req, res) => {
 
         // Get the IDs of users already followed by the current user
         const followedUserIds = currentUser.following.map(follower => follower._id);
-        console.log(followedUserIds)
 
         // Find users who are not followed by the current user
         const usersNotFollowed = await User.find({
