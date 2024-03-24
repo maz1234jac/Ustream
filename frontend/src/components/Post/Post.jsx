@@ -69,7 +69,7 @@ const Post = () => {
 
         {/* sidebar */}
         <div className='py-8 w-[350px] px-4 hidden sm:block border-2 sticky right-0'>
-          <FollowCard/>
+          <FollowCard user={userId} choice={"follower"}/>
 
           <h1 className='mt-5 font-semibold'>Suggested </h1>
           <div className='mt-5 flex flex-col gap-2'>

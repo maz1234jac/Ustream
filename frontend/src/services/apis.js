@@ -32,6 +32,7 @@ export const savePostEndpoints={
 //follow user
 export const followUserEndpoints={
     FOLLOW_USER_API:BASE_URL+"/follow",
+    GET_ALL_USER_API:BASE_URL+"/allUsers",
     GET_USER_NOT_FOLLOWED:BASE_URL+"/userNotFollowed",
 }
 

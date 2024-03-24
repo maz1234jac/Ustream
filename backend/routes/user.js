@@ -9,7 +9,7 @@ const {like,dislike}=require("../controllers/Like");
 const {createComment,deleteComment,editComment,viewComment}=require("../controllers/Comment");
 const {createTag}=require("../controllers/Tag");
 const {savePost}=require("../controllers/SavePost")
-const {follow, findUsersNotFollowed}=require("../controllers/Follow1");
+const {follow, findUsersNotFollowed, getAllUsers}=require("../controllers/Follow1");
 
 //importing middleware
 const {auth}=require("../middleware/auth");
@@ -43,6 +43,7 @@ router.post("/createTag",auth,createTag);
 
 //follow routes
 router.post("/follow",auth,follow);
+router.post("/allUsers",auth,getAllUsers);
 router.post("/userNotFollowed",auth,findUsersNotFollowed);
 
 module.exports=router;

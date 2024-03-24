@@ -9,6 +9,7 @@ const {
 const {
     FOLLOW_USER_API,
     GET_USER_NOT_FOLLOWED,
+    GET_ALL_USER_API,
 }=followUserEndpoints
 
 const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
@@ -49,6 +50,22 @@ export const userNotFollowed=async()=>{
     }catch(error){
         console.log("Error in not followed user");
         console.log(error);
+    }
+}
+
+export const getAllUsers=async()=>{
+    try{
+        const response=await apiConnector("post",GET_ALL_USER_API,"",
+        {
+            Authorization:`Bearer ${token}`
+        })
+
+        if(!response)
+            throw new Error("Error in fetching the user");
+
+        return response;
+    }catch(error){
+        console.log("Error in fetching the user")
     }
 }
 

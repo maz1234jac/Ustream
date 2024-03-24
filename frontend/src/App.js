@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import CommingSoon from "./components/ExceptionHandle/CommingSoon";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="/" element={<Post/>}/>  
               <Route path="user" element={<Profile />} />
               <Route path="/user/editProfile" element={<EditProfile/>}/>
+              <Route path="/search" element={<Search/>}/>
           </Route>
             
          <Route path="*" element={<CommingSoon/>}/>

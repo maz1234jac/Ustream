@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import dp from "../assests/dp.jpg"
 import { followUser } from '../../services/operations/userAPI'
 
-const FollowCard = ({user}) => {
+const FollowCard = ({user,choice}) => {
   const [follow,setFollow]=useState("Follow");
   const followHandler=async({heroId})=>{
     //console.log(heroId)
@@ -16,7 +16,7 @@ const FollowCard = ({user}) => {
   return (
     <div className='w-[280px] flex justify-between items-center gap-2'>
         <div className='flex gap-2 items-center'>
-            <img src={user?.image} alt="" className='w-[45px] h-[45px] rounded-full'/>
+            <img src={user?.image} alt="" className='w-[48px] h-[48px] rounded-full border-[1px] border-gray-400'/>
             <div>
                 <h1 className='font-semibold text-sm'>{user?.fullName}</h1>
                 <h2 className='text-sm'>{user?.userName}</h2>
@@ -24,8 +24,10 @@ const FollowCard = ({user}) => {
         </div>
         
         <button 
-        onClick={()=>followHandler({heroId:user?._id})}
-        className='text-blue-500 text-sm font-semibold'>{follow}</button>
+    onClick={() => followHandler({ heroId: user?._id })}
+    className='text-blue-500 text-sm font-semibold'>
+    {choice === "unfollow" ? "Unfollow" : choice === "follow" ? "Follow" : choice==="follower" ? ""  : follow}
+</button>
     </div>
   )
 }

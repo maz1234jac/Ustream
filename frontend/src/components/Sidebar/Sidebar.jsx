@@ -5,7 +5,6 @@ import { GoHome } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineExplore } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { BsSend } from "react-icons/bs";
 import { GoPlusCircle } from "react-icons/go";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -26,16 +25,11 @@ const Sidebar = () => {
         {
             title:"Search",
             element:<CiSearch/>,
-            route:"/",
+            route:"/search",
         },
         {
             title:"Explore",
             element:<MdOutlineExplore/>,
-            route:"/",
-        },
-        {
-            title:"Notification",
-            element:<IoMdNotificationsOutline/>,
             route:"/",
         },
         {

@@ -79,7 +79,7 @@ exports.follow=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"Following",
+                message:"Unfollowed",
                 data:removeFollow
             })
         }else{
@@ -121,7 +121,7 @@ exports.follow=async(req,res)=>{
 
             return res.status(200).json({
                 success:true,
-                message:"Follow",
+                message:"Followed",
                 data:updateUser
             })
         }
@@ -131,6 +131,52 @@ exports.follow=async(req,res)=>{
         return res.status(500).json({
             success:false,
             message:error
+        })
+    }
+}
+
+exports.getAllUsers=async(req,res)=>{
+    try{
+        const token=req.user;
+
+        if(!token){
+            return res.status(400).json({
+                success:false,
+                message:"Please Login First"
+            })
+        }
+        
+        const existingUser=await User.findById(token.id);
+
+        if(!existingUser){
+            return res.status(400).json({
+                success:false,
+                message:"No such user exist"
+            })
+        }
+
+        //get all users
+        const allUsers=await User.find({});
+
+        if(!allUsers){
+            return res.status(400).json({
+                success:false,
+                message:"Users didn't fetched"
+            })
+        }
+
+        //return the success response
+        return res.status(200).json({
+            success:true,
+            message:"User fetched successfully",
+            data:allUsers
+        })
+
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({
+            success:false,
+            message:"Internal Server Error"
         })
     }
 }
@@ -160,7 +206,7 @@ exports.findUsersNotFollowed = async (req, res) => {
             ]
         });
 
-        console.log(usersNotFollowed)
+        //console.log(usersNotFollowed)
         return res.status(200).json({
             success: true,
             message: "Users not followed by the current user",
