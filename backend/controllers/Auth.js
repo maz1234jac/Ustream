@@ -21,7 +21,7 @@ exports.signUp=async(req,res)=>{
         if(findUserName){
             return res.status(409).json({
                 success:false,
-                message:"User already exist in the Database! Please Login"
+                message:"User already exist! Please Login"
             })
         }
 

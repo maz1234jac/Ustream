@@ -4,6 +4,7 @@ import { GoPlusCircle } from "react-icons/go";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { setCreatePost } from '../../slices/createPostSllce';
+import {NavLink} from 'react-router-dom'
 
 const TopNav = () => {
   const dispatch=useDispatch();
@@ -19,8 +20,12 @@ const TopNav = () => {
               <button onClick={()=>dispatch(setCreatePost(true))}>
                 <GoPlusCircle/>
               </button>
-                
+              <NavLink to={"/message"}>
                 <FaFacebookMessenger/>
+              </NavLink>
+                
+              
+              
             </div>
         </div>
     </>

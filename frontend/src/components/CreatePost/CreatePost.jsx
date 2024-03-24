@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dp from '../assests/dp.jpg';
-import { GiCancel } from "react-icons/gi";
+import { RxCrossCircled } from "react-icons/rx";
 import { createPost } from '../../services/operations/postAPI';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -55,8 +55,8 @@ const CreatePost = () => {
         <div className='w-[100vw] h-[100vh]  flex  justify-center items-center'>
             <div className='w-[60vw] h-[75vh] bg-white rounded-2xl relative'>
                 <h1 className='py-2 font-semibold text-center'>Create a new Post</h1>
-                <div onClick={cancelCreatePost} className='absolute text-3xl text-red-700 top-2 right-2 cursor-pointer hover:rotate-45 duration-200'>
-                    <GiCancel />
+                <div onClick={cancelCreatePost} className='absolute text-3xl top-2 right-2 cursor-pointer 0'>
+                    <RxCrossCircled/>
                 </div>
                 <div className='h-[1px] w-full bg-black'></div>
                 <div className='w-full flex justify-start'>

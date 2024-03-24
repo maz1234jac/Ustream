@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
 import { viewComment } from '../../services/operations/postAPI';
 import { RxCrossCircled } from "react-icons/rx";
+import BottomNav from '../Navbar/BottomNav';
 
 const Comment = ({post,setCommData,commData}) => {
-  console.log(commData)
   const postId=commData._id;
   //console.log(postId)
   const [comments, setComments] = useState({});
@@ -24,17 +24,17 @@ const Comment = ({post,setCommData,commData}) => {
   }, []);
 
   useEffect(() => {
-    console.log("Comments data == ", comments);
+    //console.log("Comments data == ", comments);
   }, [comments]); 
 
   
   return (
     <>
-      <div className='w-[100vw] h-[100vh] absolute top-0 left-0 bg-gray-500/[.5]'>
+      <div className='w-[100vw] h-[100vh] relative sm:absolute top-0 left-0 bg-gray-500/[.5]'>
         <div className='absolute sm:top-[50%] sm:left-[50%] bg-white p-2 py-4 sm:-translate-x-[50%] sm:-translate-y-[50%] w-full sm:w-[80vw] rounded-md '>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 '>
           <PostCard post={post} setCommData={setCommData}/>
-          <div className=''>
+          <div className='min-h-[50vh]'>
             <div className='flex justify-between p-2'>
               {/* username */}
               <h1 className='font-semibold text-xl'>{commData.createdBy.fullName}</h1>

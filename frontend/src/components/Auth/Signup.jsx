@@ -55,7 +55,7 @@ const Signup = () => {
 
         <div className='w-full sm:w-[400px] flex justify-between mt-2 px-5 border-[1px] border-black rounded-md py-5'>
                 <p>Have an Account ?</p>
-                <Link to={"/login"}>Login</Link>
+                <Link to={"/"}>Login</Link>
         </div>
     </div>
   )

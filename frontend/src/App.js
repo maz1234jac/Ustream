@@ -4,21 +4,19 @@ import Signup from "./components/Auth/Signup";
 import Post from "./components/Post/Post";
 import OpenRoute from "./components/Auth/OpenRoute";
 import Profile from "./pages/Profile";
-import CreatePost from "./components/CreatePost/CreatePost";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import CommingSoon from "./components/ExceptionHandle/CommingSoon";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Search from "./pages/Search";
+import NotFound from "./components/ExceptionHandle/NotFound";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          
-          
-          <Route path="/login" element={
+        <Routes>  
+          <Route path="/" element={
             <OpenRoute>
               <Login/>
             </OpenRoute>
@@ -29,23 +27,21 @@ function App() {
             </OpenRoute>
           }/>
 
-          //TODO: If user is authenticated then open Login components otherwis
-          {/* <Route path="/" element={<Login/>}/> */}
-
           <Route path="/" element={
             <PrivateRoute>
               <Layout />
             </PrivateRoute>  
             }>
-              <Route path="/" element={<Post/>}/>  
+              <Route path="feed" element={<Post/>}/>  
               <Route path="user" element={<Profile />} />
               <Route path="/user/editProfile" element={<EditProfile/>}/>
               <Route path="/search" element={<Search/>}/>
+              <Route path="/message" element={<CommingSoon/>}/>
+              <Route path="/reels" element={<CommingSoon/>}/>
           </Route>
             
-         <Route path="*" element={<CommingSoon/>}/>
-          
-          
+         <Route path="*" element={<NotFound/>}/>
+
         </Routes>
       </BrowserRouter>
       

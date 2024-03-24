@@ -20,7 +20,7 @@ const Sidebar = () => {
         {
             title:"Home",
             element:<GoHome/>,
-            route:"/"
+            route:"/feed"
         },
         {
             title:"Search",
@@ -30,7 +30,7 @@ const Sidebar = () => {
         {
             title:"Explore",
             element:<MdOutlineExplore/>,
-            route:"/",
+            route:"/feed",
         },
         {
             title:"Reels",
@@ -40,7 +40,7 @@ const Sidebar = () => {
         {
             title:"Messeges",
             element:<BsSend />,
-            route:"/messages"
+            route:"/message"
         },
         {
             title:"Create",

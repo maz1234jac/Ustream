@@ -3,6 +3,7 @@ import dp from "../assests/dp.jpg";
 import {useNavigate} from "react-router-dom"
 import { updateAdditionalDetails } from '../../services/operations/userAPI';
 import { getUser } from '../../services/operations/postAPI';
+import toast from 'react-hot-toast';
 
 const EditProfile = () => {
     const navigate=useNavigate();
@@ -19,7 +20,7 @@ const EditProfile = () => {
             try {
                 const response = await getUser()
                 setUser(response.data.data);
-                console.log(response.data.data)
+                //console.log(response.data.data)
             } catch (error) {
                 console.log("Error occurred while fetching the user details:", error);
             }
@@ -46,7 +47,7 @@ const EditProfile = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         if(!profile.gender || !profile.about){
-            alert("Please enter all details carefully");
+            toast.error("Please update the details")
             return;
         }
         if(!profile.gender)

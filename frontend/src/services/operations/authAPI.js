@@ -17,12 +17,12 @@ export function signUp(signUpData,navigate){
             throw new Error(response.data.message);
         }
         toast.success("Account Created Successfully");
-        navigate("/login");
+        navigate("/");
         toast.success("Please login");
        }
        catch(error){
         console.log("SIGNUP ERROR.....",error);
-        toast.error("Signup Failed !")
+        toast.error(error.response.data.message)
         navigate("/signup")
        }
     }
@@ -38,15 +38,15 @@ export function logIn(loginData,navigate){
                 throw new Error("Login response....",response);
             }
             toast.success("Logged in Successfully");
-            navigate("/");
             localStorage.setItem("token",JSON.stringify(response.data.token));
             localStorage.setItem("user",response.data.user);
+            navigate("/feed");
         }
         catch(error){
             console.log("Errror occured while log in");
             console.log(error);
-            navigate("/login");
-            toast.error("Login Failed !")
+            navigate("/");
+            toast.error(error.response.data.message)
         }
     }
     login();
@@ -56,5 +56,5 @@ export function logout(navigate){
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         toast.success("Logged Out");
-        navigate("/login");
+        navigate("/");
 }
