@@ -19,7 +19,7 @@ const EditProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await getUser()
+                const response = await getUser(token)
                 setUser(response.data.data);
                 //console.log(response.data.data)
             } catch (error) {

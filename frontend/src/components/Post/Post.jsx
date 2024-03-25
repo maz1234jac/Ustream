@@ -24,7 +24,7 @@ const Post = () => {
     const fetchData = async () => {
       try {
         const response = await getAllPost(token);
-        setPosts(response.data.data.reverse());
+        setPosts(response.data.data?.reverse());
 
         const userData=await getUser(token);
         setUserId(userData.data.data);

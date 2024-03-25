@@ -74,12 +74,12 @@ const Profile = () => {
                                     <NavLink 
                                     to={"/user/editProfile"}
                                     className='bg-gray-200 p-1 px-5 rounded-md text-sm font-semibold'> Edit Profile</NavLink>
-                                    <button className='text-2xl bg-gray-200 p-1 rounded-full relative group'>
+                                    <div className='text-2xl bg-gray-200 p-1 rounded-full cursor-pointer relative group'>
                                         <CiSettings/>
                                         <button 
                                         onClick={()=>logout(navigate)}
                                         className='absolute -right-6 sm:-right-10 text-sm font-semibold bg-red-600 text-white px-4 py-1 rounded-2xl hidden group-hover:block'>Logout</button>
-                                    </button>
+                                    </div>
                                     
                                 </div>
                                 

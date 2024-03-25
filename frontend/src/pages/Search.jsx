@@ -22,9 +22,9 @@ const Search = () => {
         }
 
         try{
-            const response=await getAllUsers();
+            const response=await getAllUsers(token);
             //console.log(response.data.data);
-            setAllUser(response.data.data);
+            setAllUser(response?.data.data);
         }catch(error){
             console.log(error);
         }
