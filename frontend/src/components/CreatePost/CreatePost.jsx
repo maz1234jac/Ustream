@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setCreatePost } from '../../slices/createPostSllce';
 
 const CreatePost = () => {
+    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const dispatch=useDispatch();
 
     const [postData, setPostData] = useState({
@@ -39,7 +40,7 @@ const CreatePost = () => {
             formData.append('image', postData.image);
 
             // Calling createPost function with form data
-            createPost(formData, navigate);
+            createPost(formData, navigate,token);
             dispatch((setCreatePost(false)));
         } catch (error) {
             console.error("Error creating post:", error);

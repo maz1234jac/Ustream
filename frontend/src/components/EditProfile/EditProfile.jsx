@@ -6,6 +6,7 @@ import { getUser } from '../../services/operations/postAPI';
 import toast from 'react-hot-toast';
 
 const EditProfile = () => {
+    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const navigate=useNavigate();
     const [profile, setProfile] = useState({
         gender: "male",
@@ -62,7 +63,7 @@ const EditProfile = () => {
             formData.append('about',profile.about);
             formData.append('dp',profile.dp);
 
-            updateAdditionalDetails(formData,navigate);
+            updateAdditionalDetails(formData,navigate,token);
         }catch(error){
             console.log("Error occured while updating the user detalis");
         }  

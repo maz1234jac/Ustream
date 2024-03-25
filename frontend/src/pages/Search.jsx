@@ -4,6 +4,7 @@ import FollowCard from '../components/Common/FollowCard';
 import { getUser } from '../services/operations/postAPI';
 
 const Search = () => {
+    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const [allUser,setAllUser]=useState([]);
     const [followingUser,setFollowingUser]=useState([]);
     const [followers,setFollowers]=useState([]);
@@ -12,7 +13,7 @@ const Search = () => {
    useEffect(()=>{
     const fetch=async()=>{
         try{
-            const response=await getUser();
+            const response=await getUser(token);
             //console.log(response.data.data.following);
             setFollowingUser(response.data.data.following);
             setFollowers(response.data.data.followers);
@@ -29,7 +30,7 @@ const Search = () => {
         }
 
         try{
-            const response=await userNotFollowed();
+            const response=await userNotFollowed(token);
             //console.log(response.data.data);
             setUserNotFollow(response.data.data)
           }catch(error){

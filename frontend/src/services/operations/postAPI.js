@@ -2,8 +2,6 @@ import { apiConnector } from "../apiconnector";
 import { getUserEndpoints, likeCommentsEndpoints, postEndpoints, savePostEndpoints } from "../apis";
 import {toast} from "react-hot-toast"
 
-const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
-
 const {
     GET_ALL_POST_API,
     CREATE_POST_API
@@ -40,7 +38,7 @@ export const getAllPost=async()=>{
     }
 }
 
-export function createPost(postData,navigate){
+export function createPost(postData,navigate,token){
     const create=async()=>{
         try{
             const response=await apiConnector("post",CREATE_POST_API,postData,
@@ -65,7 +63,7 @@ export function createPost(postData,navigate){
     create();
 }
 
-export function createComment(commentData,dispatch,setRefresh){
+export function createComment(commentData,dispatch,setRefresh,token){
     const doComment=async()=>{
         try{
             const response=await apiConnector("post",CREATE_COMMENT_API,commentData,
@@ -103,7 +101,7 @@ export const viewComment=async(postId)=>{
     }
 }
 
-export function doLike(like,dispatch,setRefresh){
+export function doLike(like,dispatch,setRefresh,token){
     const doLike=async()=>{
         try{
             const response= await apiConnector("post",LIKE_API,{postId:like},
@@ -154,7 +152,7 @@ export function doLike(like,dispatch,setRefresh){
 }
 
 //save post-> booksmarks
-export const savePost=async(post,dispatch,setRefresh)=>{
+export const savePost=async(post,dispatch,setRefresh,token)=>{
     try{
         const response=await apiConnector("post",SAVE_POST_API,{postId:post},
         {
@@ -174,7 +172,7 @@ export const savePost=async(post,dispatch,setRefresh)=>{
 
 //FOR LATER USER -> NOT UTILISING CURRENTLY
 
-export const getUser=async()=>{
+export const getUser=async(token)=>{
     try{
         const response=await apiConnector("post",GET_USER_API,{data:"Pankaj"},
         {

@@ -3,6 +3,7 @@ import dp from "../assests/dp.jpg"
 import { followUser } from '../../services/operations/userAPI'
 
 const FollowCard = ({user,choice}) => {
+  const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
   const [follow,setFollow]=useState("Follow");
   const followHandler=async({heroId})=>{
     //console.log(heroId)
@@ -10,7 +11,7 @@ const FollowCard = ({user,choice}) => {
       setFollow("Following")
     else
       setFollow("Follow")
-    await followUser(heroId);
+    await followUser(heroId,token);
   }
 
   return (

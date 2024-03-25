@@ -10,6 +10,8 @@ import Comment from './Comment'
 import { userNotFollowed } from '../../services/operations/userAPI'
 
 const Post = () => {
+  const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
+
   const [posts, setPosts] = useState([]);
   const refresh=useSelector((state)=>state.refresh.postRefresh);
   const dispatch=useDispatch();
@@ -21,10 +23,10 @@ const Post = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllPost();
+        const response = await getAllPost(token);
         setPosts(response.data.data.reverse());
 
-        const userData=await getUser();
+        const userData=await getUser(token);
         setUserId(userData.data.data);
         //console.log(userData)
         dispatch(setUserInfo(userData.data.data));
@@ -34,7 +36,7 @@ const Post = () => {
 
       //get user data who are not followed
       try{
-        const response=await userNotFollowed();
+        const response=await userNotFollowed(token);
         //console.log(response.data.data);
         setUserNotFollow(response.data.data)
       }catch(error){

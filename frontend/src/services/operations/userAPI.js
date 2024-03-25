@@ -12,9 +12,8 @@ const {
     GET_ALL_USER_API,
 }=followUserEndpoints
 
-const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
 
-export function updateAdditionalDetails(profileData,navigate){
+export function updateAdditionalDetails(profileData,navigate,token){
     const create=async()=>{
         try{
             const response=await apiConnector("post",CREATE_ADDITIONAL_DETAILS,profileData,
@@ -35,7 +34,7 @@ export function updateAdditionalDetails(profileData,navigate){
     create();
 }
 
-export const userNotFollowed=async()=>{
+export const userNotFollowed=async(token)=>{
     try{
         const response=await apiConnector("post",GET_USER_NOT_FOLLOWED,"",
         {
@@ -53,7 +52,7 @@ export const userNotFollowed=async()=>{
     }
 }
 
-export const getAllUsers=async()=>{
+export const getAllUsers=async(token)=>{
     try{
         const response=await apiConnector("post",GET_ALL_USER_API,"",
         {
@@ -69,7 +68,7 @@ export const getAllUsers=async()=>{
     }
 }
 
-export const followUser=async(heroId)=>{
+export const followUser=async(heroId,token)=>{
     try{
         const response=await apiConnector("post",FOLLOW_USER_API,{heroId:heroId},
         {

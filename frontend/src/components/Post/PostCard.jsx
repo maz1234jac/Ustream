@@ -11,6 +11,7 @@ import { setRefresh } from '../../slices/refreshSlice';
 import { FcLike } from "react-icons/fc";
 
 const PostCard = ({post, setCommData}) => {
+    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const [commentData,setCommentData]=useState({
         comment:"",
         postId:"",
@@ -37,7 +38,7 @@ const PostCard = ({post, setCommData}) => {
 
     useEffect(()=>{
         if(like.post!==""){
-            doLike(like.post,dispatch,setRefresh);
+            doLike(like.post,dispatch,setRefresh,token);
         }
     },[like])
    
@@ -46,7 +47,7 @@ const PostCard = ({post, setCommData}) => {
         e.preventDefault();
         commentData.postId=post;
 
-        createComment(commentData,dispatch,setRefresh)
+        createComment(commentData,dispatch,setRefresh,token)
     }
     const handleChange=(e)=>{
         const {name,value}=e.target;
@@ -58,7 +59,7 @@ const PostCard = ({post, setCommData}) => {
 
     //save post controller
     const savePostHandler=(post)=>{
-        savePost(post,dispatch,setRefresh);
+        savePost(post,dispatch,setRefresh,token);
         console.log("Post saved successfully");
     }
 
