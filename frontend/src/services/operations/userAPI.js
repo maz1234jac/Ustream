@@ -23,15 +23,20 @@ export function updateAdditionalDetails(profileData,navigate,token){
             if(!response){
                 throw new Error("Error occured in user details",response);
             }
-            toast.success("User details updated succesfullly");
-            console.log(response)
+            //console.log(response)
             navigate("/user")
         }catch(error){
             console.log("Error occured while updating the user additional detials");
             console.log(error);
         }
     }
-    create();
+    const myPromise = create();
+
+    toast.promise(myPromise, {
+        loading: 'Updating...',
+        success: 'Updated',
+        error: 'Update Fail !',
+    });
 }
 
 export const userNotFollowed=async(token)=>{

@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import text_logo from "../assests/text_logo.png"
 import { Link, useNavigate } from 'react-router-dom'
-import { apiConnector } from '../../services/apiconnector'
-import {authEndpoints} from '../../services/apis'
 import { signUp } from '../../services/operations/authAPI'
-import toast from 'react-hot-toast'
 
 const Signup = () => {
     const navigate=useNavigate();
@@ -19,7 +16,7 @@ const Signup = () => {
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        console.log("Signup form submitted: ",signUpData);
+        //console.log("Signup form submitted: ",signUpData);
         signUp(signUpData,navigate);
     }
 

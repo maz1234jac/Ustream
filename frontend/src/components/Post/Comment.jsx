@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
 import { viewComment } from '../../services/operations/postAPI';
 import { RxCrossCircled } from "react-icons/rx";
-import BottomNav from '../Navbar/BottomNav';
 
 const Comment = ({post,setCommData,commData}) => {
   const postId=commData._id;
@@ -37,7 +36,7 @@ const Comment = ({post,setCommData,commData}) => {
           <div className='min-h-[50vh]'>
             <div className='flex justify-between p-2'>
               {/* username */}
-              <h1 className='font-semibold text-xl'>{commData.createdBy.fullName}</h1>
+              <h1 className='font-semibold text-xl'>Comments</h1>
               <button
               className='text-2xl font-bold'
                 onClick={()=>setCommData({})}

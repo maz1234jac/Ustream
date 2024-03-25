@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 const Layout = () => {
   const createPost=useSelector((state)=>state.createPost.value);
   useEffect(()=>{
-    console.log("Create Post",createPost);
+    //console.log("Create Post",createPost);
   },[createPost])
   
   return (

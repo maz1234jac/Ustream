@@ -62,7 +62,7 @@ const Post = () => {
         <div className='mt-2 max-w-[500px] mx-auto  px-2'>
           <TopNav/>
           {
-            posts.map((post,ind)=>{
+            posts?.map((post,ind)=>{
               return <PostCard  post={post} key={ind} setCommData={setCommData}/>
             })
           }

@@ -11,7 +11,7 @@ export function signUp(signUpData,navigate){
     const signIn=async ()=>{
        try{
         const response=await apiConnector("post",SIGNUP_API,signUpData);
-        console.log("Signup response.....",response);
+        //console.log("Signup response.....",response);
 
         if(!response){
             throw new Error(response.data.message);

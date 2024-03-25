@@ -50,17 +50,21 @@ export function createPost(postData,navigate,token){
                 throw new Error("Error occured",response);
             }
 
-            toast.success("Post Created Successfully");
             navigate("/feed");
 
         }catch(error){
             console.log("Error occured while creating the post");
             console.log(error);
-            navigate("/");
-            toast.error("Post creation Failed");
+            navigate("/feed");
         }
     }
-    create();
+    const myPromise = create();
+
+    toast.promise(myPromise, {
+        loading: 'Posting....',
+        success: 'Posted',
+        error: 'Post creation Failed',
+    });
 }
 
 export function createComment(commentData,dispatch,setRefresh,token){

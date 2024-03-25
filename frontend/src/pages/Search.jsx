@@ -42,8 +42,8 @@ const Search = () => {
    },[allUser])
   return (
     <div className='flex flex-col justify-start items-start w-full p-8'>
-        <h1 className='my-1 font-semibold underline'>Followers</h1>
-        <div className='flex flex-col gap-4 mt-2'>
+        <h1 className='my-1 font-semibold text-xl'>Followers</h1>
+        <div className='flex flex-col gap-4 '>
         {
             followers.length > 0 ?
             followers.map((user, ind) => (
@@ -54,20 +54,20 @@ const Search = () => {
         }
         </div>
 
-        <h1 className='my-1 font-semibold underline'>Following</h1>
-        <div className='flex flex-col gap-4 mt-2'>
+        <h1 className='my-1 font-semibold text-xl mt-4'>Following</h1>
+        <div className='flex flex-col gap-4 '>
         {
-            followingUser.length > 0 &&
+            followingUser.length > 0 ?
             followingUser.map((user, ind) => (
                 <div key={ind}>
                     <FollowCard user={user} choice={"unfollow"}/>
                 </div>
-            ))
+            )) : <h1 className='text-md font-semibold text-gray-600'>You are not following any one</h1>
         }
         </div>
 
-        <h1 className='my-1 font-semibold underline'>Follow a new User</h1>
-        <div className='flex flex-col gap-4 mt-2'>
+        <h1 className='my-1 font-semibold text-xl mt-4'>Follow a new User</h1>
+        <div className='flex flex-col gap-4 '>
         {
             userNotFollow.length > 0 &&
             userNotFollow.map((user, ind) => (

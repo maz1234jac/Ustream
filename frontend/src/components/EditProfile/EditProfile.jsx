@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import dp from "../assests/dp.jpg";
 import {useNavigate} from "react-router-dom"
 import { updateAdditionalDetails } from '../../services/operations/userAPI';
 import { getUser } from '../../services/operations/postAPI';
@@ -74,7 +73,7 @@ const EditProfile = () => {
             <h1 className='text-xl font-bold'>Edit Profile</h1>
             <div className='bg-gray-200/80 rounded-2xl flex flex-col sm:flex-row gap-2 sm:items-center justify-between sm:w-[90%] w-full overflow-hidden  p-5 mt-5'>
                 <div className='flex items-center gap-4 '>
-                    <img src={user.image} alt="" className='w-[50px] h-[50px] rounded-full' />
+                    <img src={profile.dp? URL.createObjectURL(profile.dp): user.image} alt="" className='w-[50px] h-[50px] rounded-full' />
                     <div>
                         <h1>{user.fullName}</h1>
                         <h2>{user.userName}</h2>
@@ -129,7 +128,7 @@ const EditProfile = () => {
                 <input
                     type='date'
                     name="dateOfBirth"
-                    value={user.additionDetails && user.additionDetails.dateOfBirth ? user.additionDetails.dateOfBirth : ''}
+                    value={profile.dateOfBirth? profile.dateOfBirth : user.additionDetails && user.additionDetails.dateOfBirth ? user.additionDetails.dateOfBirth : ''}
                     onChange={handleChange}
                     placeholder="Select date"
                     className='w-[90%] px-2 py-2 border-[1px] mt-1 rounded-md'
