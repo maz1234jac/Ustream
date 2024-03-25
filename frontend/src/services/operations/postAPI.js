@@ -51,7 +51,7 @@ export function createPost(postData,navigate,token){
             }
 
             toast.success("Post Created Successfully");
-            navigate("/");
+            navigate("/feed");
 
         }catch(error){
             console.log("Error occured while creating the post");
