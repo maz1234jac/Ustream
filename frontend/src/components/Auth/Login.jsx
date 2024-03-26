@@ -5,7 +5,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { logIn } from '../../services/operations/authAPI'
 
 const Login = () => {
+    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const navigate=useNavigate();
+
+    if(token){
+        navigate("/feed");
+    }
     const [loginData,setLoginData]=useState({
         userName:"",
         password:""
@@ -29,7 +34,7 @@ const Login = () => {
             <img src={login_screenshots} alt=""  className='h-[440px]' />
         </div>
         <div>
-            <div className='w-full sm:w-[400px] border-[1px] p-3 rounded-md border-black'>
+            <div className='w-[95vw] sm:w-[400px] border-[1px] p-3 rounded-md border-black'>
                 <div className='flex justify-center flex-col items-center p-2'>
                     <img src={text_logo} alt="" className='w-[200px]' />
                 </div>
