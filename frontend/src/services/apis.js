@@ -1,4 +1,4 @@
-const BASE_URL="http://localhost:4000/api/v1"
+const BASE_URL="https://instagram-api-sand.vercel.app"
 
 //Auth endpoints
 export const authEndpoints={
