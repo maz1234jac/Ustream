@@ -1,4 +1,4 @@
-const BASE_URL="https://instagram-api-topaz.vercel.app"
+const BASE_URL="https://instagram-api-topaz.vercel.app/api/v1"
 
 //Auth endpoints
 export const authEndpoints={
