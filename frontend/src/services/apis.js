@@ -1,4 +1,4 @@
-const BASE_URL="https://fullstack-instagram-clone.onrender.com/api/v1"
+const BASE_URL="https://instagram-clone-apis.vercel.app/api/v1"
 
 //Auth endpoints
 export const authEndpoints={
