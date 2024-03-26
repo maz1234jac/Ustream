@@ -5,12 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { logIn } from '../../services/operations/authAPI'
 
 const Login = () => {
-    const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
     const navigate=useNavigate();
 
-    if(token){
-        navigate("/feed");
-    }
     const [loginData,setLoginData]=useState({
         userName:"",
         password:""
