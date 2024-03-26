@@ -9,8 +9,8 @@ const app=express();
 
 app.use(cors(
     {
-        origin:["https://instagram-clone-wheat-chi.vercel.app"],
-        methods:["POST","GET"],
+        origin:["https://fullstack-instagram-clone.onrender.com"],
+        methods:["POST","GET","PUT"],
         credentials:true
     }
 ));
