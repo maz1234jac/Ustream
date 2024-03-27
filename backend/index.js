@@ -9,7 +9,7 @@ const app=express();
 
 app.use(cors(
     {
-        origin:["https://instagram-clone-wheat-chi.vercel.app"],
+        origin:["https://insta-clone-mern.vercel.app"],
         methods:["POST","GET","PUT"],
         credentials:true
     }
