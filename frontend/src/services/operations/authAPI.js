@@ -7,9 +7,10 @@ const {
     LOGIN_API
 } =authEndpoints;
 
-export function signUp(signUpData,navigate){
+export function signUp(signUpData,navigate,setLoading){
     const signIn=async ()=>{
        try{
+        setLoading(true);
         const response=await apiConnector("post",SIGNUP_API,signUpData);
         //console.log("Signup response.....",response);
 
@@ -25,12 +26,14 @@ export function signUp(signUpData,navigate){
         toast.error(error.response.data.message)
         navigate("/signup")
        }
+       setLoading(false);
     }
     signIn();
 }
 
-export function logIn(loginData,navigate){
+export function logIn(loginData,navigate,setLoading){
     const login=async ()=>{
+        setLoading(true);
         try{
             const response=await apiConnector("post",LOGIN_API,loginData);
 
@@ -48,6 +51,7 @@ export function logIn(loginData,navigate){
             navigate("/");
             toast.error(error.response.data.message)
         }
+        setLoading(false);
     }
     login();
 }

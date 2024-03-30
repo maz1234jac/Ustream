@@ -5,6 +5,7 @@ import { signUp } from '../../services/operations/authAPI'
 
 const Signup = () => {
     const navigate=useNavigate();
+    const [loading,setLoading]=useState(false);
 
     //take the value from the signup form and send it the required routes.
     const [signUpData,setSignUpData]=useState({
@@ -17,7 +18,7 @@ const Signup = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         //console.log("Signup form submitted: ",signUpData);
-        signUp(signUpData,navigate);
+        signUp(signUpData,navigate,setLoading);
     }
 
     const handleDataChange=(e)=>{

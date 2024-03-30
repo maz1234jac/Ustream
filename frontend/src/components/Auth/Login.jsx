@@ -3,9 +3,11 @@ import text_logo from "../assests/text_logo.png"
 import login_screenshots from "../assests/login_screeenshot.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { logIn } from '../../services/operations/authAPI'
+import Loading from '../Loader/Loading'
 
 const Login = () => {
     const navigate=useNavigate();
+    const [loading,setLoading]=useState(false);
 
     const [loginData,setLoginData]=useState({
         userName:"",
@@ -14,7 +16,7 @@ const Login = () => {
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        logIn(loginData,navigate);
+        logIn(loginData,navigate,setLoading);
     }
 
     const handleChange=(e)=>{
@@ -24,6 +26,9 @@ const Login = () => {
             [name]:value,
         })
     }
+
+    if(loading)
+        return <Loading/>
   return (
     <div className='w-[100vw] h-[100vh] flex  justify-center items-center gap-6 px-2 bg-zinc-100'>
         <div className='md:block hidden'>

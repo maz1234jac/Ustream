@@ -11,10 +11,11 @@ import { FcLike } from "react-icons/fc";
 import { FaRegComment } from "react-icons/fa";
 import BottomNav from '../components/Navbar/BottomNav';
 import { logout } from '../services/operations/authAPI';
+import Loading from '../components/Loader/Loading';
 
 const Profile = () => {
     const token = localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null;
-    const navigate=useNavigate();
+    const navigate=useNavigate();    
     const menuList=[
         {
             name:"posts",
@@ -32,15 +33,18 @@ const Profile = () => {
     const [choice,setChoice]=useState("posts");
     const [user, setUser] = useState({});
     const [userPosts, setUserPosts] = useState([]);
+    const [loading,setLoading]=useState(false);
     
     useEffect(() => {
         const fetchUser = async () => {
+            setLoading(true);
             try {
                 const response = await getUser(token);
                 setUser(response.data.data);
             } catch (error) {
                 console.log("Error occurred while fetching the user details:", error);
             }
+            setLoading(false);
         };
     
         fetchUser();
@@ -59,6 +63,7 @@ const Profile = () => {
     return (
         <>
             <div className='w-[100vw] mx-auto sm:w-[60%] h-screen flex-1 relative'>
+                {loading?<Loading/>:
                 <div className='mt-8  px-2'>
                     <div className='flex sm:w-[80%] items-center justify-center sm:justify-evenly flex-col sm:flex-row '>
                         {/* left image */}
@@ -143,6 +148,7 @@ const Profile = () => {
                         <div className='text-4xl text-center mt-5'>No Post found</div>
                     )}
                 </div>
+                }
                 <div className='absolute bottom-0 w-full px-4'>
                     <BottomNav/>
                 </div>
