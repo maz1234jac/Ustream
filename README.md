@@ -11,6 +11,9 @@ Welcome to the MERN Instagram Clone project! This is a full-stack web applicatio
 - Profile updation , image uploading
 - Responsive design for mobile and desktop
 
+#### demo: https://insta-clone-mern.vercel.app
+#### repo: https://github.com/PankajKumar1947/FullStack-Instagram-Clone
+
 ## Upcoming features
 - messaging
 - reels
